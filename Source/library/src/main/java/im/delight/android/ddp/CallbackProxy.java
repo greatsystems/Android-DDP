@@ -20,6 +20,7 @@ import android.os.Handler;
 import android.os.Looper;
 import java.util.LinkedList;
 import java.util.List;
+import com.firebase.tubesock.WebSocketMessage;
 
 /** Wrapper that executes all registered callbacks on the correct thread behind the scenes */
 public class CallbackProxy implements MeteorCallback {

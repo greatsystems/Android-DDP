@@ -16,6 +16,8 @@ package im.delight.android.ddp;
  * limitations under the License.
  */
 
+import com.firebase.tubesock.WebSocketMessage;
+
 /** Callback for asynchronous events caused by a WebSocket connection or received from a DDP server */
 public interface MeteorCallback extends DdpCallback {
 
