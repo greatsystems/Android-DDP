@@ -153,14 +153,14 @@ public class Meteor {
 				final boolean lostConnection = mConnected;
 				mConnected = false;
 				if (lostConnection) {
-					mReconnectAttempts++;
-					if (mReconnectAttempts <= RECONNECT_ATTEMPTS_MAX) {
-						// try to re-connect automatically
-						reconnect();
-					}
-					else {
+					// mReconnectAttempts++;
+					// if (mReconnectAttempts <= RECONNECT_ATTEMPTS_MAX) {
+					// 	// try to re-connect automatically
+					// 	reconnect();
+					// }
+					// else {
 						disconnect();
-					}
+					// }
 				}
 
 				mCallbackProxy.onDisconnect();
