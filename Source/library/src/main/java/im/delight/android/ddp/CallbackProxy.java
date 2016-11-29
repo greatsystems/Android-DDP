@@ -82,6 +82,47 @@ public class CallbackProxy implements MeteorCallback {
 	}
 
 	@Override
+	public void onMessage(WebSocketMessage e) {
+		// iterate over all the registered callbacks
+		for (final MeteorCallback callback : mCallbacks) {
+			// if the callback exists
+			if (callback != null) {
+				// execute the callback on the main thread
+				mUiHandler.post(new Runnable() {
+
+					@Override
+					public void run() {
+						// run the proxied method with the same parameters
+						callback.onMessage(e);
+					}
+
+				});
+			}
+		}
+	}
+
+	@Override
+	public void onLogMessage(String msg) {
+		// iterate over all the registered callbacks
+		for (final MeteorCallback callback : mCallbacks) {
+			// if the callback exists
+			if (callback != null) {
+				// execute the callback on the main thread
+				mUiHandler.post(new Runnable() {
+
+					@Override
+					public void run() {
+						// run the proxied method with the same parameters
+						callback.onLogMessage(msg);
+					}
+
+				});
+			}
+		}
+	}
+
+
+	@Override
 	public void onDataAdded(final String collectionName, final String documentID, final String newValuesJson) {
 		// iterate over all the registered callbacks
 		for (final MeteorCallback callback : mCallbacks) {

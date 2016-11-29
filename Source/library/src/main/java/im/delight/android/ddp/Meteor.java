@@ -36,7 +36,6 @@ import com.firebase.tubesock.WebSocket;
 import com.firebase.tubesock.WebSocketEventHandler;
 import com.firebase.tubesock.WebSocketMessage;
 import com.firebase.tubesock.WebSocketException;
-import android.util.Log;
 
 /** Client that connects to Meteor servers implementing the DDP protocol */
 public class Meteor {
@@ -154,14 +153,14 @@ public class Meteor {
 				final boolean lostConnection = mConnected;
 				mConnected = false;
 				if (lostConnection) {
-					// mReconnectAttempts++;
-					// if (mReconnectAttempts <= RECONNECT_ATTEMPTS_MAX) {
-					// 	// try to re-connect automatically
-					// 	reconnect();
-					// }
-					// else {
+					mReconnectAttempts++;
+					if (mReconnectAttempts <= RECONNECT_ATTEMPTS_MAX) {
+						// try to re-connect automatically
+						reconnect();
+					}
+					else {
 						disconnect();
-					// }
+					}
 				}
 
 				mCallbackProxy.onDisconnect();
@@ -180,16 +179,18 @@ public class Meteor {
 					log("    binary");
 					log("      ignored");
 				}
+				mCallbackProxy.onMessage(message);
 			}
 
 			@Override
 			public void onError(final WebSocketException e) {
-				Log.e("Ice", "error "+e)
 				mCallbackProxy.onException(e);
 			}
 
 			@Override
-			public void onLogMessage(final String msg) { }
+			public void onLogMessage(final String msg) { 
+				mCallbackProxy.onLogMessage(msg);
+			}
 
 		};
 
