@@ -36,6 +36,7 @@ import com.firebase.tubesock.WebSocket;
 import com.firebase.tubesock.WebSocketEventHandler;
 import com.firebase.tubesock.WebSocketMessage;
 import com.firebase.tubesock.WebSocketException;
+import android.util.Log;
 
 /** Client that connects to Meteor servers implementing the DDP protocol */
 public class Meteor {
@@ -183,6 +184,7 @@ public class Meteor {
 
 			@Override
 			public void onError(final WebSocketException e) {
+				Log.e("Ice", "error "+e)
 				mCallbackProxy.onException(e);
 			}
 
