@@ -83,7 +83,7 @@ public class CallbackProxy implements MeteorCallback {
 	}
 
 	@Override
-	public void onMessage(WebSocketMessage e) {
+	public void onMessage(final WebSocketMessage e) {
 		// iterate over all the registered callbacks
 		for (final MeteorCallback callback : mCallbacks) {
 			// if the callback exists
@@ -103,7 +103,7 @@ public class CallbackProxy implements MeteorCallback {
 	}
 
 	@Override
-	public void onLogMessage(String msg) {
+	public void onLogMessage(final String msg) {
 		// iterate over all the registered callbacks
 		for (final MeteorCallback callback : mCallbacks) {
 			// if the callback exists
